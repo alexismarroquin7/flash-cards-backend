@@ -1,13 +1,13 @@
 exports.up = async (knex) => {
   await knex.schema
-    .createTable('roles', (users) => {
-      users.increments('role_id')
+    .createTable('roles', (roles) => {
+      roles.increments('role_id')
       
-      users.string('role_name')
+      roles.string('role_name')
       .notNullable()
       .unique();
 
-      users.string('role_description')
+      roles.string('role_description')
     })
 }
 
