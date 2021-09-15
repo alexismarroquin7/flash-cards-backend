@@ -27,9 +27,50 @@ exports.up = async (knex) => {
       .onUpdate('CASCADE')
       .onDelete('RESTRICT');
     })
+    .createTable('decks', (decks) => {
+      decks.increments('deck_id')
+      
+      decks.string('deck_name')
+      .notNullable()
+      
+      decks.string('deck_color')
+      .notNullable()
+      
+      decks.string('deck_description')
+      
+      decks.integer('user_id')
+      .unsigned()
+      .notNullable()
+      .references('user_id')
+      .inTable('users')
+      .onUpdate('CASCADE')
+      .onDelete('RESTRICT');
+    })
+    .createTable('cards', (cards) => {
+      cards.increments('card_id')
+
+      cards.integer('card_stack_order')
+      .notNullable();
+      
+      cards.integer('deck_id')
+      .unsigned()
+      .notNullable()
+      .references('deck_id')
+      .inTable('decks')
+      .onUpdate('CASCADE')
+      .onDelete('RESTRICT');
+
+      cards.string('panel_a_text');
+      cards.string('panel_a_notes');
+      
+      cards.string('panel_b_text');
+      cards.string('panel_b_notes');
+    });
 }
 
 exports.down = async (knex) => {
-  await knex.schema.dropTableIfExists('users')
-  await knex.schema.dropTableIfExists('roles')
+  await knex.schema.dropTableIfExists('cards');
+  await knex.schema.dropTableIfExists('decks');
+  await knex.schema.dropTableIfExists('users');
+  await knex.schema.dropTableIfExists('roles');
 }
