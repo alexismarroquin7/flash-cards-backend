@@ -49,9 +49,8 @@ exports.up = async (knex) => {
     .createTable('panels', (panels) => {
       panels.increments('panel_id')
       
-      panels.string('panel_text')
-      .notNullable()
-      
+      panels.string('panel_text');
+            
       panels.string('panel_notes')
     })
     .createTable('cards', (cards) => {
