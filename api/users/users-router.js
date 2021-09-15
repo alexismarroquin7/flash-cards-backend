@@ -1,5 +1,10 @@
+// routers
 const router = require('express').Router();
+
+// models
 const User = require('./users-model');
+
+// middleware
 const { validateUserIdExists } = require('./users-middleware');
 
 router.get('/', async (req, res, next) => {
@@ -14,8 +19,6 @@ router.get('/', async (req, res, next) => {
 router.get('/:user_id', validateUserIdExists, async (req, res, next) => {
   res.status(200).json(req.user);
 });
-
-
 
 router.use((err, req, res, next) => { // eslint-disable-line
   res.status(err.status || 500).json({
