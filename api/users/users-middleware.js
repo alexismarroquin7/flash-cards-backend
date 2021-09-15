@@ -32,6 +32,27 @@ const validateUserSchema = (req, res, next) => {
   }
 };
 
+const validateUsernameExists = async (req, res, next) => {
+  const { username } = req.body;
+  try {
+    const user = await User.findByUsername(username);
+
+    if(user){
+      req.user = user;
+      next();
+
+    } else {
+      next({
+        message: "user was not found",
+        status: 404
+      });
+    }
+  
+  } catch(err) {
+    next(err);
+  }
+};
+
 const validateUserIdExists = async (req, res, next) => {
   
   const { user_id } = req.params;
@@ -56,5 +77,6 @@ const validateUserIdExists = async (req, res, next) => {
 
 module.exports = {
   validateUserSchema,
+  validateUsernameExists,
   validateUserIdExists
 };
