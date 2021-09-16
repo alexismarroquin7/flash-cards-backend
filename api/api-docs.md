@@ -6,7 +6,6 @@
   response: (list of roles)
 
   ```
-
   [
     {
       name: 'user'
