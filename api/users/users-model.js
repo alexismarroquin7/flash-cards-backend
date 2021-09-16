@@ -8,11 +8,11 @@ const formatUsers = (rows) => {
     if (Array.isArray(rows)){
       const users = rows.map(row => {
         return {
-          id: row.user_id,
+          user_id: row.user_id,
           username: row.username,
           password: row.password,
           role: {
-            id: row.role_id,
+            role_id: row.role_id,
             name: row.role_name
           }
         }
@@ -22,11 +22,11 @@ const formatUsers = (rows) => {
     
     } else {  
       const user = {
-        id: rows.user_id,
+        user_id: rows.user_id,
         username: rows.username,
         password: rows.password,
         role: {
-          id: rows.role_id,
+          role_id: rows.role_id,
           name: rows.role_name
         }
       }

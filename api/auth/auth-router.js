@@ -19,10 +19,10 @@ router.post('/login', validateUserSchema, validateUsernameExists, (req, res, nex
     });
 
     res.status(200).json({
-      id: req.user.user_id,
+      user_id: req.user.user_id,
       username: req.user.username,
       role: {
-        id: req.user.role.id,
+        role_id: req.user.role.role_id,
         name: req.user.role.name
       },
       token,
