@@ -7,6 +7,7 @@
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
+    "dbreset": "npm run rollback && npm run migrate && npm run seed",
     "migrateh": "heroku run knex migrate:latest -a flash-cards-backend",
     "rollbackh": "heroku run knex migrate:rollback -a flash-cards-backend",
     "databaseh": "heroku pg:psql -a flash-cards-backend",

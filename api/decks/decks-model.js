@@ -101,6 +101,64 @@ const query = async (filter) => {
   return formatDecks(decks);
 }
 
+const findById = async (deck_id) => {
+  
+  const deck = await db('decks as d')
+  .leftJoin('cards as c', 'c.deck_id', 'd.deck_id')
+  .select(
+    'd.*',
+    
+    'c.card_id',
+    'c.card_stack_order',
+
+    'c.panel_a_text',
+    'c.panel_a_notes',
+    
+    'c.panel_b_text',
+    'c.panel_b_notes',
+  )
+  .where('d.deck_id', deck_id)
+  
+  return formatDecks(deck);
+};
+
+const create = async ({ deck_name, deck_color, deck_description = null, user_id }) => {
+
+  const [ deck ] = await db('decks as d')
+    .insert({
+      deck_name,
+      deck_color,
+      deck_description,
+      user_id: Number(user_id)
+    },
+    ['d.deck_id']
+  );
+
+  return findById(deck.deck_id);
+}
+
+const deleteById = async (deck_id) => {
+
+  const deletedDeck = await findById(deck_id);
+
+  await db.transaction(async trx => {
+    const cards = await trx('cards as c').where({ deck_id });
+    
+    if(cards.length > 0){
+      await trx('cards as c').where({ deck_id }).delete();
+    }
+    
+  });
+
+  await db('decks as d').where({ deck_id }).delete();
+
+  return deletedDeck;
+
+}
+
 module.exports = {
-  query
+  query,
+  findById,
+  create,
+  deleteById
 }

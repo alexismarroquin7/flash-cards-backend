@@ -13,7 +13,7 @@ router.post('/login', validateUserSchema, validateUsernameExists, (req, res, nex
   if(bcrypt.compareSync(password, req.user.password)){
 
     const token = generateToken({
-      user_id: req.user.id,
+      user_id: req.user.user_id,
       username: req.user.username,
       role: req.user.role.role_name
     });
