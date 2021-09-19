@@ -69,6 +69,26 @@ const cards = [
     panel_b_text: 'spoon',
     panel_b_notes: null,
   },
+  {
+    deck_id: 3,
+    card_stack_order: 1,
+    
+    panel_a_text: 'tenedor',
+    panel_a_notes: null,
+    
+    panel_b_text: 'fork',
+    panel_b_notes: null,
+  },
+  {
+    deck_id: 3,
+    card_stack_order: 1,
+    
+    panel_a_text: 'pan',
+    panel_a_notes: null,
+    
+    panel_b_text: 'bread',
+    panel_b_notes: null,
+  },
 ];
 
 module.exports = {
