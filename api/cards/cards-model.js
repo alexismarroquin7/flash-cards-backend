@@ -73,9 +73,22 @@ const findById = async card_id => {
 
 const deleteById = async (card_id) => {
   const cardToDelete = await findById(card_id);
+  console.log('cardToDelete', cardToDelete);
+  await db.transaction(async trx => {
+    const relatedCards = await trx('cards as c')
+    .where({ deck_id: cardToDelete.deck_id })
+    .where('c.card_stack_order', '>', cardToDelete.stack_order);
 
+    if(relatedCards.length > 0){
+      await trx('cards as c')
+      .where({ deck_id: cardToDelete.deck_id })
+      .where('c.card_stack_order', '>', cardToDelete.stack_order)
+      .decrement('card_stack_order', 1);
+    }
+
+  });
+  
   await db('cards as c').where({ card_id }).delete();
-
   return formatCards(cardToDelete);
 
 }
