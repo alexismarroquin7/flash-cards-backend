@@ -71,7 +71,7 @@ const cards = [
   },
   {
     deck_id: 3,
-    card_stack_order: 1,
+    card_stack_order: 2,
     
     panel_a_text: 'tenedor',
     panel_a_notes: null,
@@ -81,7 +81,7 @@ const cards = [
   },
   {
     deck_id: 3,
-    card_stack_order: 1,
+    card_stack_order: 3,
     
     panel_a_text: 'pan',
     panel_a_notes: null,
