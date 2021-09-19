@@ -19,7 +19,31 @@ const decks = [
   },
   { // 4
     deck_name: 'Spanish Phrases',
-    deck_description: 'Sample description for Phrases',
+    deck_description: 'Sample description for Spanish Phrases',
+    deck_color: '#f5d3a9',
+    user_id: 4,
+  },
+  { // 5
+    deck_name: 'German Nouns',
+    deck_description: 'Sample description for German Nouns',
+    deck_color: '#bda9f5',
+    user_id: 4,
+  },
+  { // 6
+    deck_name: 'German Phrases',
+    deck_description: 'Sample description for German Phrases',
+    deck_color: '#f5d3a9',
+    user_id: 4,
+  },
+  { // 7
+    deck_name: 'Korean Nouns',
+    deck_description: 'Sample description for Korean Nouns',
+    deck_color: '#bda9f5',
+    user_id: 4,
+  },
+  { // 8
+    deck_name: 'Korean Phrases',
+    deck_description: 'Sample description for Korean Phrases',
     deck_color: '#f5d3a9',
     user_id: 4,
   },
