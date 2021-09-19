@@ -2,14 +2,20 @@ const Deck = require('../decks/decks-model');
 const Card = require('../cards/cards-model');
 
 const validateSortQuery = (req, res, next) => {
-  if(req.query.sort && req.query.sort === 'asc' || req.query.sort === 'desc'){
-    next();
+  if(req.query.sort){
+    if(req.query.sort === 'asc' || req.query.sort === 'desc'){
+      next();
+      
+    } else {
+      next({
+        status: 400,
+        message: `{sort} query must equal 'asc' or 'desc'`
+      });
+
+    }
     
   } else {
-    next({
-      status: 400,
-      message: `{sort} query must be 'asc' or 'desc'`
-    });
+    next();
   }
 }
 
