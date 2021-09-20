@@ -73,9 +73,49 @@ const validateCardIdExists = async (req, res, next) => {
   }
 }
 
+const validateCardModel = (req, res, next) => {
+  const { deck_id } = req.body;
+  
+  const noDeckId = Boolean(!deck_id);
+  
+  if(noDeckId){
+    next({
+      status: 400,
+      message: `{deck_id} is required`
+    });  
+  } else if (Number.isNaN(Number(deck_id))){
+    next({
+      status: 400,
+      message: `{deck_id} for new card cannot be NaN, it must be a number`
+    });
+  } else {
+    next();
+  }
+}
+
+const validateDeckExistsByDeckId = async (req, res, next) => {
+  const { deck_id } = req.body;
+  
+  try {
+    const [ deck ] = await Deck.findById(Number(deck_id));
+    
+    if(deck && deck.length !== 0){
+      next();
+    } else {
+      next({
+        status: 404,
+        message: `deck of id ${deck_id} was does not exist`
+      });
+    }
+  } catch (err) {
+    next(err)
+  } 
+}
 
 module.exports = {
   validateSortQuery,
   validateDeckIdQuery,
-  validateCardIdExists
+  validateCardIdExists,
+  validateCardModel,
+  validateDeckExistsByDeckId,
 }

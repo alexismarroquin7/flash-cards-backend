@@ -71,9 +71,40 @@ const findById = async card_id => {
   return formatCards(card);
 };
 
+const create = async ({
+  deck_id,
+  panel_a = {
+    text: null,
+    notes: null
+  },
+  panel_b = {
+    text: null,
+    notes: null
+  }
+}) => {
+
+  const cardListInDeck = await db('cards as c')
+  .where({ deck_id });
+
+  const [ card ] = await db('cards as c')
+  .insert({
+    deck_id,
+
+    card_stack_order: cardListInDeck.length + 1,
+
+    panel_a_text: panel_a.text,
+    panel_a_notes: panel_a.notes,
+
+    panel_b_text: panel_b.text,
+    panel_b_notes: panel_b.notes
+  }, ['c.*']);
+
+  return formatCards(card);
+}
+
 const deleteById = async (card_id) => {
   const cardToDelete = await findById(card_id);
-  console.log('cardToDelete', cardToDelete);
+  
   await db.transaction(async trx => {
     const relatedCards = await trx('cards as c')
     .where({ deck_id: cardToDelete.deck_id })
@@ -96,5 +127,6 @@ const deleteById = async (card_id) => {
 module.exports = {
   findAll,
   findById,
+  create,
   deleteById
 }
