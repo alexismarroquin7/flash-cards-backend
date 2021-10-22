@@ -47,6 +47,7 @@ const decks = [
     deck_color: '#f5d3a9',
     user_id: 4,
   },
+  // added more robust seed data
 ];
 
 module.exports = {
