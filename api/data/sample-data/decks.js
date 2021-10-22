@@ -24,29 +24,30 @@ const decks = [
     user_id: 4,
   },
   { // 5
-    deck_name: 'German Nouns',
-    deck_description: 'Sample description for German Nouns',
+    deck_name: 'Portugese Nouns',
+    deck_description: 'Sample description for Portugese Nouns',
     deck_color: '#bda9f5',
     user_id: 4,
   },
   { // 6
-    deck_name: 'German Phrases',
-    deck_description: 'Sample description for German Phrases',
+    deck_name: 'Portugese Phrases',
+    deck_description: 'Sample description for Portugese Phrases',
     deck_color: '#f5d3a9',
     user_id: 4,
   },
   { // 7
-    deck_name: 'Korean Nouns',
-    deck_description: 'Sample description for Korean Nouns',
+    deck_name: 'Italian Nouns',
+    deck_description: 'Sample description for Italian Nouns',
     deck_color: '#bda9f5',
     user_id: 4,
   },
   { // 8
-    deck_name: 'Korean Phrases',
-    deck_description: 'Sample description for Korean Phrases',
+    deck_name: 'Italian Phrases',
+    deck_description: 'Sample description for Italian Phrases',
     deck_color: '#f5d3a9',
     user_id: 4,
   },
+  // added more robust seed data
 ];
 
 module.exports = {
